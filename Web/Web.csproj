@@ -4,12 +4,22 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Web.xml</DocumentationFile>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middleware\" />
+    <ProjectReference Include="..\Core\Services\Services.csproj" />
+    <ProjectReference Include="..\Infrastructure\Persistence.Ef\Persistence.Ef.csproj" />
+    <ProjectReference Include="..\Infrastructure\Presentation.Api\Presentation.Api.csproj" />
   </ItemGroup>
 
 </Project>
