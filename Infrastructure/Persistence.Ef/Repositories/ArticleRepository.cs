@@ -12,13 +12,5 @@ namespace Persistence.Ef.Repositories
             : base(cmsDbContext)
         {            
         }
-
-        public async Task<Article> GetArticleByIdAsync(long articleId, CancellationToken cancellationToken = default)
-        {
-            var article = await base.GetByIdAsync(articleId, cancellationToken);
-            _cmsDbContext.Entry(article).State = EntityState.Detached;
-
-            return article;
-        }
     }
 }

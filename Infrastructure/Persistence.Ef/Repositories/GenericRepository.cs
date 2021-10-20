@@ -28,8 +28,14 @@ namespace Persistence.Ef.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<T> GetByIdAsync(long id, CancellationToken cancellationToken = default) =>
-            await _cmsDbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
+        public async Task<T> GetByIdAsync(long id, CancellationToken cancellationToken = default)
+        { 
+            var resultEntity = await _cmsDbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
+            if (resultEntity != null)
+                _cmsDbContext.Entry(resultEntity).State = EntityState.Detached;
+
+            return resultEntity;
+        }            
 
         public void Add(T entity)
         {

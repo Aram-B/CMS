@@ -1,8 +1,10 @@
-﻿namespace Domain.Repositories
+﻿using Domain.Entities;
+
+namespace Domain.Repositories
 {
     public interface IRepositoryManager
     {
-        IArticleRepository ArticleRepository { get; }
+        IGenericRepository<Article> ArticleRepository { get; }
 
         IUnitOfWork UnitOfWork { get; }
     }

@@ -52,7 +52,7 @@ namespace Services
 
         public async Task DeleteArticleAsync(long articleId, CancellationToken cancellationToken = default)
         {
-            var article = await _repositoryManager.ArticleRepository.GetArticleByIdAsync(articleId);
+            var article = await _repositoryManager.ArticleRepository.GetByIdAsync(articleId);
 
             if (article == null)
                 throw new ArticleNotFoundException(articleId);
@@ -64,7 +64,7 @@ namespace Services
                 
         public async Task UpdateArticleAsync(UpdateArticleDto updateArticleDto, CancellationToken cancellationToken = default)
         {
-            var existingArticle = await _repositoryManager.ArticleRepository.GetArticleByIdAsync(updateArticleDto.Id, cancellationToken);
+            var existingArticle = await _repositoryManager.ArticleRepository.GetByIdAsync(updateArticleDto.Id, cancellationToken);
 
             if (existingArticle == null)
                 throw new ArticleNotFoundException(updateArticleDto.Id);
