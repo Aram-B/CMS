@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Web.Middleware
 {
+    // Global exception handler middleware
     internal sealed class ExceptionHandlingMiddleware : IMiddleware
     {
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
